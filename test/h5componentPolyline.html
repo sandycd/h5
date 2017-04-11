@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件构造</title>
+	<script src="../js/lib/jquery.js"></script>
+	<script src="js/h5componentbase.js"></script>
+	<script src="js/h5componentpolyline.js"></script>
+	<link rel="stylesheet" href="css/h5componentpolyline.css">
+	<style>
+	body{
+		margin:0;
+		padding:0;
+		background:#000;
+
+		}
+	.iphone{
+		width:320px;
+		height:640px;
+		background:#fff;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin:-320px 0 0 -160px;
+
+	}
+	</style>
+	
+</head>
+<body>
+	
+		<div class="iphone">
+			
+		</div>
+
+	<script>
+	var cfg={
+		type : 'polyline' ,
+		width:530,
+		height:400,
+		data:[
+			['   Js',.4,'#ff7676'],
+			['Html5',.2],
+			['Css3',.1],
+			['Jquery',.2],
+			['Bootstrap',.5],
+	
+		],
+	
+		center:true,
+		css:
+		{
+			color:'#f00',
+			fontSize:30
+		},
+	
+	}
+	var names='myName';
+	var h5base=new h5componentpolyline(names,cfg);
+	$('.iphone').append(h5base);
+	 var  load=true;
+		$('.iphone').click(function(){
+			load=!load;
+			$('.h5_component').trigger(load ? 'afterLoad' :'onLeave')
+		})
+	</script>
+</body>
+</html>

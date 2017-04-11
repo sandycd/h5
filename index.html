@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+	<title>h5组件模块化开发学习</title>
+	<!-- 依赖模块引入 -->
+	<script tpye="text/javascript" src="js/lib/jquery.js"></script>
+	<script tpye="text/javascript" src="js/lib/jquery-ui.min.js"></script>
+	<script tpye="text/javascript" src="js/lib/jquery.fullPage.js"></script>
+	<script tpye="text/javascript" src="js/h5.js"></script>
+	<link rel="stylesheet" href="css/h5.css">
+	<link rel="stylesheet" href="css/h5loading.css">
+</head>
+<body>	
+	<div class="loading">
+		<div class="double1"></div>
+		<div class="double2"></div>
+		<div id="rate">0%</div>
+	</div>
+	<script type="text/javascript" src='js/h5loading.js' ></script>
+	<!-- //内容管理 -->
+	<script type="text/javascript" >
+	     	var res=[
+	     			'base','bar','bar-v','point','polyline','radar','pie','ring'
+	     	];
+	     	var html=[];
+	     	for(i in res){
+	     		html.push('<script type="text/javascript" src="js/h5component'+res[i]+'.js"><\/script>');
+	     		html.push('<link rel="stylesheet" type="text/css" href="css/h5component'+res[i]+'.css">');
+	     	}
+	     	document.write(html.join(''));
+	</script>
+	
+	<!-- 主要内容 -->
+	<script tpye="text/javascript">
+	$(function(){
+		var arr=[0,1,2,3,4,4,46,2,1,24]
+		function oSort(arr)
+			{
+			var result ={};
+			var newArr=[];
+			for(var i=0;i<arr.length;i++)
+			{
+
+			if(!result[arr])
+			{
+
+			newArr.push(arr)
+			result[arr]=1
+			}
+			}
+			return newArr
+			}
+		console.log(oSort(arr))
+
+			debugger
+		var ppt=new h5();
+		ppt.whenAddPage=function(){
+			this.addComponent('returnback.png',{
+			
+	  			width:640,
+	  			height:39,	  
+	  			bg:'imgs/returnback.png',		
+	  			css:{opacity:0,position:'absolute',bottom:0,width:'100%',height:'20px',zIndex:999},
+	  			animateIn:{opacity:1,bottom:0},
+	  			animateOut:{opacity:0,bottom:-20},
+	  		
+	  		})
+
+
+		}
+		
+
+		$.getJSON('data.json',function(json,status,xhr){
+		console.log(json)
+			$.each(json,function(i,item){
+
+					if(item.isPage){
+						ppt.addPage(item.name,item.text)
+					}else{
+						ppt.addComponent(item.name,item.cfg)
+					}
+			})
+			ppt.loader(['imgs/text-bl.png','imgs/people.png','imgs/logo.png','imgs/index_bottomsight.png','imgs/index_bottomleft.png','imgs/text-center.png']);
+		})
+	  
+
+	  	 	
+	})
+
+	</script>
+
+</body>
+</html>

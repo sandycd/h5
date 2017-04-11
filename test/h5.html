@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加页面和添加组件</title>
+	<script src="../js/lib/jquery.js"></script>
+	<script tpye="text/javascript" src="../js/lib/jquery-ui.min.js"></script>
+	<script tpye="text/javascript" src="../js/lib/jquery.fullPage.js"></script>
+	<script src="js/h5componentbase.js"></script>
+	<script src="js/h5.js"></script>
+	<link rel="stylesheet" href="css/h5componentbase.css">
+</head>
+<body>
+	
+	
+	
+	<script>
+	$(function(){
+		var ppt=new h5();
+		ppt.addPage('page-1')
+	  		.addComponent('logo',{
+	  	type : 'base' ,
+		text : 'logo',
+		width:514,
+		height:305,
+		bg:'../imgs/people.png',
+	
+		css:
+		{
+			color:'#f00',
+			fontSize:30,
+			opacity:0
+		},
+		animateIn:
+				{
+					opacity:1,
+					top:'50%'
+				},
+		animateOut:{opacity:0,top:-50}
+	  		})
+	  		.addComponent('首页')
+	 	 .addPage('page-2')
+	  		.addComponent('img-2')
+	  		.addComponent('图文内容')
+	 	 .addPage('page-3')
+	  		.addComponent('img-3')
+	  		.addComponent('图表内容')
+	  	.loader()
+	})
+
+	</script>
+</body>
+</html>
